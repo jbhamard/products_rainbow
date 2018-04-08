@@ -27,8 +27,18 @@ program
 program
   .command('colors')
   .description('Get products color from Google Vision API')
-  .action(options => {
-    process.exit(0)
+  .action(_ => {
+    colors
+      .set()
+      .then(() => {
+        console.log('Products Colors set Success')
+        process.exit(0)
+      })
+      .catch(err => {
+        console.log('Products Colors set Error')
+        console.log(err)
+        process.exit(0)
+      })
   })
 
 program.version('0.1.0', '-v, --version').parse(process.argv)

@@ -18,7 +18,8 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  color: { type: String }
+  labColor: { type: [Number] },
+  rgbColor: { type: [Number] }
 })
 
 const Product = mongoose.model('Product', productSchema)
