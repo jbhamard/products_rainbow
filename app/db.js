@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.connect = undefined;
+exports.close = exports.connect = undefined;
 
 var _mongoose = require('mongoose');
 
@@ -19,13 +19,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var connect = function connect() {
   _mongoose2.default.Promise = global.Promise;
-  _mongoose2.default.connect(config.mongoConnexion).catch(function (err) {
-    return console.log(err);
-  });
+  _mongoose2.default.connect(config.mongoConnexion);
   _mongoose2.default.connection.on('error', function (err) {
     console.log('mongodb_connection_error');
     console.log(err);
   });
 };
 
+var close = function close() {
+  _mongoose2.default.connection.close();
+};
+
 exports.connect = connect;
+exports.close = close;
