@@ -99,3 +99,11 @@ Usage: colors [options]
 
     -h, --help  output usage information
 ```
+
+## API
+
+`/products/:id/related`
+
+`:id` example : L1212-00-001
+
+For a given product in DB, returns the 5 most similar products in terms of color.
