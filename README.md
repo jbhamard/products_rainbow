@@ -15,7 +15,17 @@ This application allows you to :
 ## Config
 
 All config vars are set through environment variables.
-See project .env.
+See project .env.template file.
+
+```
+NODE_ENV="development"
+NODE_PORT=6000
+
+MONGO_CONNECTION="mongodb://localhost/rainbow"
+GOOLGE_API_VISION_URL=https://vision.googleapis.com/v1/images:annotate
+GOOGLE_API_KEY=_your_google_api_key
+```
+
 
 ## Dev and Build
 
@@ -70,4 +80,22 @@ Usage: products [options]
 
     -c, --catalog  Catalog URI
     -h, --help     output usage information
+```
+
+### Set products image main color
+
+- Reads all imported products
+- Calls Google Vision API to get each product image main color.
+- Saves product color to DB.
+
+`node ./app/cli.js colors --help`
+
+```
+Usage: colors [options]
+
+  Get products color from Google Vision API
+
+  Options:
+
+    -h, --help  output usage information
 ```
