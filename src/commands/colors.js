@@ -7,7 +7,7 @@ const saveProduct = product => product.save()
 
 const _setColors = (resolve, reject) => {
   let readCursor = Product.find({
-    $or: [{ labColor: null }, { labColor: [] }]
+    labColor: { $exists: true, $ne: [] }
   }).cursor()
 
   streamToRx(readCursor)
