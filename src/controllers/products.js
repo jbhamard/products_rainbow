@@ -1,12 +1,10 @@
 import Product from '../models/product'
 
-const aggregate = async productId => {
-  const p = await Product.findOne({ id: productId })
-  const color = p.labColor
-
+const relatedProducts = product => {
+  const color = product.labColor
   //distance expression from https://docs.mongodb.com/manual/reference/operator/aggregation/sqrt/#exp._S_sqrt
   return Product.aggregate()
-    .match({ id: { $ne: productId } })
+    .match({ id: { $ne: product.id } })
     .addFields({
       colorProximity: {
         $sqrt: {
@@ -23,13 +21,18 @@ const aggregate = async productId => {
     .project('id title gender_id composition sleeve photo url -_id')
 }
 
-const related = (req, res, next) => {
-  aggregate(req.params.id)
-    .then(products => {
-      res.status(200)
-      res.json(products)
-    })
-    .catch(next)
+const related = async (req, res, next) => {
+  const product = await Product.findOne({ id: req.params.id })
+  if (!product) {
+    res.sendStatus(404)
+  } else {
+    relatedProducts(product)
+      .then(products => {
+        res.status(200)
+        res.json(products)
+      })
+      .catch(next)
+  }
 }
 
 export { related }
