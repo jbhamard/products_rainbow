@@ -26,7 +26,9 @@ var saveProduct = function saveProduct(product) {
 };
 
 var _setColors = function _setColors(resolve, reject) {
-  var readCursor = _product2.default.find({ labColor: null }).cursor();
+  var readCursor = _product2.default.find({
+    $or: [{ labColor: null }, { labColor: [] }]
+  }).cursor();
 
   (0, _rxjsStream.streamToRx)(readCursor).pipe((0, _operators.bufferCount)(5), (0, _operators.mergeMap)(_google_vision_api.dominantColors, null, 5), (0, _operators.mergeAll)(), (0, _operators.mergeMap)(saveProduct), (0, _operators.catchError)(reject) //interrupt command if error
   ).finally(function () {

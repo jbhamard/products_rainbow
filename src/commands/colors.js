@@ -6,7 +6,9 @@ import { streamToRx } from 'rxjs-stream'
 const saveProduct = product => product.save()
 
 const _setColors = (resolve, reject) => {
-  let readCursor = Product.find({ labColor: null }).cursor()
+  let readCursor = Product.find({
+    $or: [{ labColor: null }, { labColor: [] }]
+  }).cursor()
 
   streamToRx(readCursor)
     .pipe(
