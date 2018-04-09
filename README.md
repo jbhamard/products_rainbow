@@ -34,6 +34,10 @@ GOOGLE_API_KEY=_your_google_api_key
 `npm run build` or `npm run build-watch`
 
 
+## Test
+
+`npm run test`
+
 ## CLI
 
 `node ./app/cli.js --help`
@@ -114,13 +118,22 @@ The service will respond with :
 ```
 [
     {
-        "id": "DF7345-00-Y78",
-        "title": "Polo Lacoste LIVE en coton à côtes ajourées uni avec piping",
+        "id": "DF7790-00-5SX",
+        "title": "Polo Lacoste en jersey de coton uni dos plissé",
         "gender_id": "WOM",
         "composition": "100% Coton",
         "sleeve": "Manches courtes",
-        "photo": "//image1.lacoste.com/dw/image/v2/AAQM_PRD/on/demandware.static/Sites-FR-Site/Sites-master/default/DF7345_Y78_24.jpg?sw=458&sh=443",
-        "url": "https://www.lacoste.com/fr/lacoste/femme/vetements/polos/polo-lacoste-live-en-coton-a-cotes-ajourees-uni-avec-piping/DF7345-00.html?dwvar_DF7345-00_color=Y78"
+        "photo": "//image1.lacoste.com/dw/image/v2/AAQM_PRD/on/demandware.static/Sites-FR-Site/Sites-master/default/DF7790_5SX_24.jpg?sw=458&sh=443",
+        "url": "https://www.lacoste.com/fr/lacoste/femme/vetements/polos/polo-lacoste-en-jersey-de-coton-uni-dos-plisse/DF7790-00.html?dwvar_DF7790-00_color=5SX"
+    },
+    {
+        "id": "DF7790-00-F9F",
+        "title": "Polo Lacoste en jersey de coton uni dos plissé",
+        "gender_id": "WOM",
+        "composition": "100% Coton",
+        "sleeve": "Manches courtes",
+        "photo": "//image1.lacoste.com/dw/image/v2/AAQM_PRD/on/demandware.static/Sites-FR-Site/Sites-master/default/DF7790_F9F_24.jpg?sw=458&sh=443",
+        "url": "https://www.lacoste.com/fr/lacoste/femme/vetements/polos/polo-lacoste-en-jersey-de-coton-uni-dos-plisse/DF7790-00.html?dwvar_DF7790-00_color=F9F"
     },
     {
         "id": "DF7789-00-RQG",
@@ -141,22 +154,13 @@ The service will respond with :
         "url": "https://www.lacoste.com/fr/lacoste/femme/vetements/polos/polo-slim-fit-manches-trois-quart-lacoste-live-cotele-/DF7325-00.html?dwvar_DF7325-00_color=F9M"
     },
     {
-        "id": "DF7325-00-166",
-        "title": "Polo slim fit manches trois-quart Lacoste LIVE côtelé ",
+        "id": "DF7789-00-RQU",
+        "title": "Polo slim fit Lacoste en mini jacquard Prince de Galles",
         "gender_id": "WOM",
         "composition": "100% Coton",
-        "sleeve": "Manches longues",
-        "photo": "//image1.lacoste.com/dw/image/v2/AAQM_PRD/on/demandware.static/Sites-FR-Site/Sites-master/default/DF7325_166_24.jpg?sw=458&sh=443",
-        "url": "https://www.lacoste.com/fr/lacoste/femme/vetements/polos/polo-slim-fit-manches-trois-quart-lacoste-live-cotele-/DF7325-00.html?dwvar_DF7325-00_color=166"
-    },
-    {
-        "id": "DF7334-00-HUC",
-        "title": "Polo slim fit manches trois-quart Lacoste LIVE rayé",
-        "gender_id": "WOM",
-        "composition": "100% Coton",
-        "sleeve": "Manches longues",
-        "photo": "//image1.lacoste.com/dw/image/v2/AAQM_PRD/on/demandware.static/Sites-FR-Site/Sites-master/default/DF7334_HUC_24.jpg?sw=458&sh=443",
-        "url": "https://www.lacoste.com/fr/lacoste/femme/vetements/polos/polo-slim-fit-manches-trois-quart-lacoste-live-raye/DF7334-00.html?dwvar_DF7334-00_color=HUC"
+        "sleeve": "Manches courtes",
+        "photo": "//image1.lacoste.com/dw/image/v2/AAQM_PRD/on/demandware.static/Sites-FR-Site/Sites-master/default/DF7789_RQU_24.jpg?sw=458&sh=443",
+        "url": "https://www.lacoste.com/fr/lacoste/femme/vetements/polos/polo-slim-fit-lacoste-en-mini-jacquard-prince-de-galles/DF7789-00.html?dwvar_DF7789-00_color=RQU"
     }
 ]
 ```
