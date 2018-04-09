@@ -106,6 +106,10 @@ Usage: colors [options]
 
 ## API
 
+Start the server :
+
+`node app/server.js`
+
 `/products/:id/related`
 
 `:id` example : L1212-00-001
