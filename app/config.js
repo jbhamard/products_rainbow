@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.nodePort = exports.googleVisionApiKey = exports.googleVisionApiUrl = exports.mongoConnexion = undefined;
+exports.nodeEnv = exports.nodePort = exports.googleVisionApiKey = exports.googleVisionApiUrl = exports.mongoConnexion = undefined;
 
 var _dotenv = require('dotenv');
 
@@ -17,8 +17,10 @@ var mongoConnexion = process.env.MONGO_CONNECTION;
 var googleVisionApiUrl = process.env.GOOLGE_API_VISION_URL;
 var googleVisionApiKey = process.env.GOOGLE_API_KEY;
 var nodePort = process.env.NODE_PORT;
+var nodeEnv = process.env.NODE_ENV;
 
 exports.mongoConnexion = mongoConnexion;
 exports.googleVisionApiUrl = googleVisionApiUrl;
 exports.googleVisionApiKey = googleVisionApiKey;
 exports.nodePort = nodePort;
+exports.nodeEnv = nodeEnv;

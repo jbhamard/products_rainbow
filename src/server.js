@@ -29,3 +29,5 @@ process.on('SIGINT', () => {
     }, 100)
   })
 })
+
+export default app

@@ -9,6 +9,7 @@
     "eslint": "npx eslint src/**/*.js",
     "watch": "watch -p \"src/**/*.*\" -c \"npm run build\"",
     "babel": "npx babel src --out-dir app --presets=env --plugins=transform-object-rest-spread,babel-plugin-transform-runtime",
+    "test": "NODE_ENV=test npx jest --forceExit app/tests",
     "build": "npm run prettier && npm run eslint && npm run babel",
     "build-watch": "npm run build && npm run watch"
   },
@@ -38,6 +39,7 @@
     "jest": "^22.4.3",
     "nodemon": "^1.17.2",
     "prettier": "^1.11.1",
+    "supertest": "^3.0.0",
     "watch-cli": "^0.2.3"
   }
 }
