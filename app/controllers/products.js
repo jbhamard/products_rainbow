@@ -19,31 +19,41 @@ var _product2 = _interopRequireDefault(_product);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var aggregate = function () {
-  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(productId) {
-    var p, color;
+var relatedProducts = function relatedProducts(product) {
+  var color = product.labColor;
+  //distance expression from https://docs.mongodb.com/manual/reference/operator/aggregation/sqrt/#exp._S_sqrt
+  return _product2.default.aggregate().match({ id: { $ne: product.id } }).addFields({
+    colorProximity: {
+      $sqrt: {
+        $add: [{ $pow: [{ $subtract: [color[0], '$color[0]'] }, 2] }, { $pow: [{ $subtract: [color[1], '$color[1]'] }, 2] }, { $pow: [{ $subtract: [color[2], '$color[1]'] }, 2] }]
+      }
+    }
+  }).sort({ colorProximity: 'desc' }).limit(5).project('id title gender_id composition sleeve photo url -_id');
+};
+
+var related = function () {
+  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(req, res, next) {
+    var product;
     return _regenerator2.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _product2.default.findOne({ id: productId });
+            return _product2.default.findOne({ id: req.params.id });
 
           case 2:
-            p = _context.sent;
-            color = p.labColor;
+            product = _context.sent;
 
-            //distance expression from https://docs.mongodb.com/manual/reference/operator/aggregation/sqrt/#exp._S_sqrt
+            if (!product) {
+              res.sendStatus(404);
+            } else {
+              relatedProducts(product).then(function (products) {
+                res.status(200);
+                res.json(products);
+              }).catch(next);
+            }
 
-            return _context.abrupt('return', _product2.default.aggregate().match({ id: { $ne: productId } }).addFields({
-              colorProximity: {
-                $sqrt: {
-                  $add: [{ $pow: [{ $subtract: [color[0], '$color[0]'] }, 2] }, { $pow: [{ $subtract: [color[1], '$color[1]'] }, 2] }, { $pow: [{ $subtract: [color[2], '$color[1]'] }, 2] }]
-                }
-              }
-            }).sort({ colorProximity: 'desc' }).limit(5).project('id title gender_id composition sleeve photo url -_id'));
-
-          case 5:
+          case 4:
           case 'end':
             return _context.stop();
         }
@@ -51,16 +61,9 @@ var aggregate = function () {
     }, _callee, undefined);
   }));
 
-  return function aggregate(_x) {
+  return function related(_x, _x2, _x3) {
     return _ref.apply(this, arguments);
   };
 }();
-
-var related = function related(req, res, next) {
-  aggregate(req.params.id).then(function (products) {
-    res.status(200);
-    res.json(products);
-  }).catch(next);
-};
 
 exports.related = related;
