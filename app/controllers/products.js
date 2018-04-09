@@ -21,8 +21,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var relatedProducts = function relatedProducts(product) {
   var color = product.labColor;
-  //distance expression from https://docs.mongodb.com/manual/reference/operator/aggregation/sqrt/#exp._S_sqrt
-  return _product2.default.aggregate().match({ id: { $ne: product.id } }).addFields({
+
+  //all other products with a labColor attribute
+  var matchQuery = {
+    $and: [{ id: { $ne: product.id } }, {
+      labColor: { $exists: true, $ne: [] }
+    }]
+
+    //distance expression from https://docs.mongodb.com/manual/reference/operator/aggregation/sqrt/#exp._S_sqrt
+  };return _product2.default.aggregate().match(matchQuery).addFields({
     colorProximity: {
       $sqrt: {
         $add: [{ $pow: [{ $subtract: [color[0], '$color[0]'] }, 2] }, { $pow: [{ $subtract: [color[1], '$color[1]'] }, 2] }, { $pow: [{ $subtract: [color[2], '$color[1]'] }, 2] }]
@@ -44,7 +51,9 @@ var related = function () {
           case 2:
             product = _context.sent;
 
-            if (!product) {
+
+            //some products may not have a color attribute yet; return 404
+            if (!product || !product.labColor || !product.labColor.length === 0) {
               res.sendStatus(404);
             } else {
               relatedProducts(product).then(function (products) {
